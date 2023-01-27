@@ -19,5 +19,6 @@ module RubyRailsPostgres
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.hosts << ENV["SELF_APP_DOMAIN"]
+    config.secret_key_base = ENV["SECRET_KEY_BASE"]
   end
 end
