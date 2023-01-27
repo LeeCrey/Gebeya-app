@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  prepend_before_action :set_locale
+  before_action :set_locale
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from I18n::InvalidLocale, with: :not_valid_locale
 

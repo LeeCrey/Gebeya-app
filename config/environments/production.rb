@@ -12,6 +12,26 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
+  Rails.application.routes.default_url_options[:host] = {
+    host: "rails-production-1c39.up.railway.app",
+  }
+
+  # Setup for production - deliveries, no errors raised
+  config.action_mailer.default_url_options = { host: "rails-production-1c39.up.railway.app" }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "rails-production-1c39.up.railway.app",
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"],
+  }
+
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local = false
   config.action_controller.perform_caching = true
@@ -60,7 +80,7 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
-  # config.active_job.queue_name_prefix = "gebeya_production"
+  # config.active_job.queue_name_prefix = "ruby_rails_postgres_production"
 
   config.action_mailer.perform_caching = false
 
